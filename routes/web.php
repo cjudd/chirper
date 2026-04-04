@@ -23,7 +23,7 @@ Route::view('/register', 'auth.register')
     ->name('register');
 
 Route::post('/register', RegisterController::class)
-    ->middleware('guest');
+    ->middleware('guest','throttle:5,1');
 
 // Login routes
 Route::view('/login', 'auth.login')
@@ -31,7 +31,7 @@ Route::view('/login', 'auth.login')
     ->name('login');
 
 Route::post('/login', Login::class)
-    ->middleware('guest');
+    ->middleware('guest', 'throttle:5,1');
 
 // Logout route
 Route::post('/logout', Logout::class)
